@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<odoo>
+    <record id="view_basic_ineco_res_partner_form" model="ir.ui.view">
+        <field name="name">basic.ineco.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="title" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </field>
+            <field name="vat" position="attributes">
+                <attribute name="string">เลขประจำตัวผู้เสียภาษี</attribute>
+                <attribute name="placeholder">เลขประจำตัว 13 หลัก</attribute>
+            </field>
+            <field name="vat" position="after">
+                <field name="with_holding_tax_type" />
+            </field>
+            <group name="sale" position="inside">
+                <field
+                    name="billing_payment_id"
+                    groups="account.group_account_invoice"
+                    widget="selection"
+                />
+                <field
+                    name="cheque_payment_id"
+                    groups="account.group_account_invoice"
+                    widget="selection"
+                />
+            </group>
+            <xpath expr="//notebook" position="inside">
+                <page string="กรมสรรพากร">
+                    <group>
+                        <group string="ข้อมูลสำหรับภาษีหัก ณ ที่จ่าย">
+                            <field name="th_vat_no" placeholder="เลขประจำตัว 13 หลัก" />
+                            <field
+                                name="th_branch_no"
+                                attrs="{'invisible': [('with_holding_tax_type','=','pp4')]}"
+                                placeholder="ลำดับสาขา XXXXX"
+                            />
+                            <field
+                                name="th_title"
+                                attrs="{'invisible': [('with_holding_tax_type','=','pp7')]}"
+                                placeholder="คำนำหน้าชื่อ"
+                            />
+                            <field
+                                name="th_firstname"
+                                attrs="{'invisible': [('with_holding_tax_type','=','pp7')]}"
+                                placeholder="ชื่อ"
+                            />
+                            <field
+                                name="th_lastname"
+                                attrs="{'invisible': [('with_holding_tax_type','=','pp7')]}"
+                                placeholder="นามสกุล"
+                            />
+                            <field
+                                name="th_home_no"
+                                placeholder="ต.ย. เลขที่ xx/xxx อาคารxxxxx"
+                            />
+                            <field name="th_moo" placeholder="ต.ย. XX" />
+                            <field name="th_soi" placeholder="ต.ย. ซอยxxxxxxxx" />
+                            <field name="th_street" placeholder="ต.ย. ถนนxxxxxxxxxxx" />
+                            <field
+                                name="th_tambon"
+                                placeholder="ต.ย. แขวงxxxxxxxxx หรือ ตำบลxxxxxxxxx"
+                            />
+                            <field
+                                name="th_amphur"
+                                placeholder="ต.ย. เขตxxxxxxxxx หรือ อำเภอxxxxxxxxxx"
+                            />
+                            <field
+                                name="th_province"
+                                placeholder="ต.ย. จังหวัดxxxxxxx"
+                            />
+                            <field name="th_zip" placeholder="ต.ย. XXXXX" />
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_basic_ineco_res_partner_tree" model="ir.ui.view">
+        <field name="name">basic.ineco.res.partner.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree" />
+        <field name="arch" type="xml">
+            <field name="email" position="after">
+                <field name="street" optional="show" />
+                <field name="street2" optional="show" />
+            </field>
+        </field>
+    </record>
+</odoo>
