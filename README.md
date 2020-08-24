@@ -1,2 +1,2 @@
 # addons_thailand
-Odoo adding for thailand
+ODOO addons for thailand
